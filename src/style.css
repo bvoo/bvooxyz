@@ -1,0 +1,93 @@
+:root {
+  --bg-color: #000000;
+  --text-color: #ffffff;
+  --text-secondary: #888888;
+  --border-color: #333333;
+  --accent-color: #7928ca;
+  /* Vercel/Linear purple-ish */
+  --accent-glow: rgba(121, 40, 202, 0.4);
+  --font-mono: 'JetBrains Mono', monospace;
+  --spacing-unit: 8px;
+  --card-bg: #050505;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-mono);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--accent-color);
+  color: white;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+.cta-button {
+  display: inline-block;
+  margin-top: 32px;
+  padding: 12px 24px;
+  background: transparent;
+  color: var(--text-color);
+  border-radius: 0;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  border: 1px solid var(--text-color);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cta-icon {
+  width: 1.2em;
+  height: 1.2em;
+  transition: transform 0.2s ease;
+}
+
+.cta-button:hover .cta-icon {
+  transform: translateX(4px);
+}
+
+.cta-button:hover {
+  background: var(--text-color);
+  color: var(--bg-color);
+  transform: translateY(-2px);
+}
