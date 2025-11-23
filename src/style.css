@@ -6,9 +6,45 @@
   --accent-color: #7928ca;
   /* Vercel/Linear purple-ish */
   --accent-glow: rgba(121, 40, 202, 0.4);
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-mono: 'Berkeley Mono', monospace;
   --spacing-unit: 8px;
   --card-bg: #050505;
+}
+
+@font-face {
+  font-family: 'Berkeley Mono';
+  src: url('/fonts/BerkeleyMono-Regular.woff2') format('woff2'),
+    url('/fonts/BerkeleyMono-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Berkeley Mono';
+  src: url('/fonts/BerkeleyMono-Italic.woff2') format('woff2'),
+    url('/fonts/BerkeleyMono-Italic.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Berkeley Mono';
+  src: url('/fonts/BerkeleyMono-Bold.woff2') format('woff2'),
+    url('/fonts/BerkeleyMono-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Berkeley Mono';
+  src: url('/fonts/BerkeleyMono-BoldItalic.woff2') format('woff2'),
+    url('/fonts/BerkeleyMono-BoldItalic.woff') format('woff');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
 }
 
 html {
