@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { onMounted, nextTick } from 'vue';
+import { onMounted, nextTick, ref } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Background from '../components/Background.vue';
 import ProjectCard from '../components/ProjectCard.vue';
 import HeroSection from '../components/HeroSection.vue';
@@ -11,10 +10,9 @@ import ContactSection from '../components/ContactSection.vue';
 import Footer from '../components/Footer.vue';
 import { projects } from '../data/projects';
 
-gsap.registerPlugin(ScrollTrigger);
-
 const router = useRouter();
 const route = useRoute();
+const activeSection = ref('projects');
 
 function navigateToProject(slug: string) {
   router.push(`/projects/${slug}`);
@@ -36,19 +34,19 @@ onMounted(async () => {
 <template>
   <Background />
   
-  <main class="container">
+  <main id="main-content" class="container" tabindex="-1">
     <header>
       <div class="logo">bvoo.xyz</div>
-      <nav>
-        <a href="#projects">Projects</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+      <nav aria-label="Main navigation">
+        <a href="#projects" :aria-current="activeSection === 'projects' ? 'true' : undefined">Projects</a>
+        <a href="#about" :aria-current="activeSection === 'about' ? 'true' : undefined">About</a>
+        <a href="#contact" :aria-current="activeSection === 'contact' ? 'true' : undefined">Contact</a>
       </nav>
     </header>
 
     <HeroSection />
 
-    <section id="projects" class="projects-grid">
+    <section id="projects" class="projects-grid" tabindex="-1">
       <div class="grid">
         <div 
           v-for="project in projects" 

@@ -1,47 +1,65 @@
 <template>
-  <div class="content">
-    <h2>About Truffle.vip</h2>
-    <p>
-      Built creator monetization systems on top of Twitch and YouTube scaling to over 100k users.
-      Empowering creators with tools to grow and monetize their communities.
-    </p>
-    
-    <h2>Key Features</h2>
-    <ul>
-      <li><ArrowRight class="list-icon" /> Scalable architecture</li>
-      <li><ArrowRight class="list-icon" /> Platform integrations</li>
-      <li><ArrowRight class="list-icon" /> Real-time analytics</li>
-    </ul>
-  </div>
+  <ProjectTemplate :project="project">
+    <template #content>
+      <h2>About Truffle.vip</h2>
+      <p>
+        Truffle is a comprehensive monetization platform for content creators. While working there, I led the development of systems that scaled to support 
+        over 100,000 concurrent users connected via WebSockets, enabling creators to earn revenue through custom browser extensions and integrated tools 
+        on Twitch and YouTube.
+      </p>
+      
+      <h2>Technical Highlights</h2>
+      <ul>
+        <li>
+          <ArrowRight class="list-icon" />
+          <span>
+            <strong>Rust Backend:</strong> High-performance backend services handling hundreds of thousands of concurrent requests.
+          </span>
+        </li>
+        <li>
+          <ArrowRight class="list-icon" />
+          <span>
+            <strong>Postgres:</strong> Complex schema design for user entitlements, payments, and analytics.
+          </span>
+        </li>
+        <li>
+          <ArrowRight class="list-icon" />
+          <span>
+            <strong>Platform APIs:</strong> Deep integration with Internal APIs, Twitch Helix API, and YouTube Data API.
+          </span>
+        </li>
+      </ul>
+    </template>
+  </ProjectTemplate>
 </template>
 
 <script setup lang="ts">
 import { ArrowRight } from 'lucide-vue-next';
+import ProjectTemplate from '../ProjectTemplate.vue';
+import type { Project } from '../../data/projects';
+
+defineProps<{
+  project: Project;
+}>();
 </script>
 
 <style scoped>
-.content {
-  color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: 40px;
-}
-
-.content h2 {
+h2 {
   color: var(--text-color);
   font-size: 1.5rem;
   margin: 32px 0 16px;
 }
 
-.content p {
+p {
   margin-bottom: 16px;
 }
 
-.content ul {
+ul {
   list-style: none;
   padding: 0;
 }
 
-.content li {
+li {
   display: flex;
   align-items: flex-start;
   margin-bottom: 8px;

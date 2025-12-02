@@ -27,13 +27,18 @@ function handleCopy() {
       <div class="footer-column contact-column">
         <h3>Contact</h3>
         <div class="footer-links">
+          <a href="/ksResume2025.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
           <a href="mailto:kaitlyn@bvoo.xyz">Email</a>
           <a href="https://github.com/bvoo" target="_blank" rel="noopener noreferrer">GitHub</a>
           <a href="https://linkedin.com/in/bvoo" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a href="https://twitter.com/bvoowo" target="_blank" rel="noopener noreferrer">Twitter</a>
           <div 
             class="discord-link"
+            role="button"
+            tabindex="0"
             @click="handleCopy"
+            @keydown.enter="handleCopy"
+            @keydown.space.prevent="handleCopy"
             @mouseenter="showDiscordTooltip = true"
             @mouseleave="!copied && (showDiscordTooltip = false)"
           >

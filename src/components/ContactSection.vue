@@ -1,22 +1,18 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Mail } from 'lucide-vue-next';
-import { useDiscordCopy } from '../composables/useDiscordCopy';
-import IconGithub from './icons/IconGithub.vue';
-import IconLinkedin from './icons/IconLinkedin.vue';
-import IconTwitter from './icons/IconTwitter.vue';
-import IconDiscord from './icons/IconDiscord.vue';
-
-gsap.registerPlugin(ScrollTrigger);
-
-const { copyDiscord, copied: discordCopied } = useDiscordCopy();
+import SocialLinks from './SocialLinks.vue';
+import EmailModal from './EmailModal.vue';
 
 const localCurrency = ref('USD');
 const localAmount = ref<string | null>(null);
 const showTooltip = ref(false);
-const showDiscordTooltip = ref(false);
+const showEmailModal = ref(false);
+
+function openEmailModal(event: MouseEvent) {
+  event.preventDefault();
+  showEmailModal.value = true;
+}
 
 function formatCurrency(amount: number, currency: string) {
   return new Intl.NumberFormat(navigator.language, {
@@ -98,35 +94,10 @@ onMounted(async () => {
         </span>
       </p>
 
-      <div class="social-links">
-        <a href="mailto:kaitlyn@bvoo.xyz" class="social-link" aria-label="Email">
-          <Mail />
-        </a>
-        <a href="https://github.com/bvoo" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
-          <IconGithub />
-        </a>
-        <a href="https://linkedin.com/in/bvoo" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
-          <IconLinkedin />
-        </a>
-        <a href="https://twitter.com/bvoowo" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter">
-          <IconTwitter />
-        </a>
-        <div 
-          class="social-link discord-trigger" 
-          aria-label="Discord"
-          @mouseenter="showDiscordTooltip = true"
-          @mouseleave="showDiscordTooltip = false"
-          @click="copyDiscord"
-        >
-          <IconDiscord />
-          <transition name="fade">
-            <span v-if="showDiscordTooltip" class="discord-tooltip">
-              {{ discordCopied ? 'Copied!' : '@bvoo' }}
-            </span>
-          </transition>
-        </div>
-      </div>
+      <SocialLinks @email-click="openEmailModal" />
     </div>
+
+    <EmailModal :show="showEmailModal" @close="showEmailModal = false" />
   </section>
 </template>
 
@@ -186,29 +157,6 @@ onMounted(async () => {
   z-index: 10;
 }
 
-.discord-trigger {
-  position: relative;
-  cursor: pointer;
-}
-
-.discord-tooltip {
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  white-space: nowrap;
-  margin-bottom: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  pointer-events: none;
-  z-index: 10;
-  color: var(--text-color);
-}
-
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.2s ease;
@@ -217,31 +165,5 @@ onMounted(async () => {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
-}
-
-.social-links {
-  display: flex;
-  gap: 24px;
-  justify-content: center;
-  align-items: center;
-}
-
-.social-link {
-  color: var(--text-secondary);
-  transition: all 0.2s ease;
-  padding: 12px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.social-link:hover {
-  color: var(--text-color);
-  background: rgba(255, 255, 255, 0.08);
-  border-color: var(--border-color);
-  transform: translateY(-2px);
 }
 </style>

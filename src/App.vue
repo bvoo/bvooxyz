@@ -17,6 +17,7 @@ watch(isProjectRoute, (isProject) => {
 </script>
 
 <template>
+  <a href="#projects" class="skip-link">Skip to content</a>
   <div class="app-wrapper">
     <div class="home-layer" :class="{ blurred: isProjectRoute }">
       <Home />

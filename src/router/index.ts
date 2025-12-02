@@ -1,6 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from '../views/Home.vue';
-import ProjectDetail from '../views/ProjectDetail.vue';
 
 export default createRouter({
     history: createWebHistory(),
@@ -8,12 +6,12 @@ export default createRouter({
         {
             path: '/',
             name: 'home',
-            component: Home
+            component: () => import('../views/Home.vue')
         },
         {
             path: '/projects/:slug',
             name: 'project',
-            component: ProjectDetail,
+            component: () => import('../views/ProjectDetail.vue'),
             props: true
         }
     ]

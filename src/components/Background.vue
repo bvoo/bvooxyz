@@ -39,10 +39,18 @@
   height: 200%;
   background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.08), transparent 40%);
   animation: pulse 10s ease-in-out infinite alternate;
+  will-change: transform, opacity;
 }
 
 @keyframes pulse {
   0% { transform: scale(1); opacity: 0.5; }
   100% { transform: scale(1.1); opacity: 0.8; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-overlay {
+    animation: none;
+    opacity: 0.65;
+  }
 }
 </style>

@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 
 function onCardEnter(event: MouseEvent) {
   const card = event.currentTarget as HTMLElement;
@@ -47,7 +44,7 @@ onMounted(() => {
     <div class="about-content">
       <h2>About Me</h2>
       <p class="about-intro">
-        I work across the full spectrum. Full-stack software, PCB design, manufacturing. I work on 0-to-1 projects or join existing teams, adapting to whatever the project needs. Feel free to <span class="link" @click="scrollToContact">inquire</span> about any of my projects or to ask about my availability and experience.
+        I work across the full spectrum. Full-stack software, PCB design, manufacturing. I work on 0-to-1 projects or join existing teams, adapting to whatever the project needs. Feel free to <span class="link" role="button" tabindex="0" @click="scrollToContact" @keydown.enter="scrollToContact" @keydown.space.prevent="scrollToContact">inquire</span> about any of my projects or to ask about my availability and experience.
       </p>
       
       <div class="skills-grid">

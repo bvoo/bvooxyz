@@ -1,47 +1,69 @@
 <template>
-  <div class="content">
-    <h2>About Traction</h2>
-    <p>
-      A SaaS tool to track e-commerce competitors.
-      Gain insights into your competitors' strategies and performance.
-    </p>
-    
-    <h2>Key Features</h2>
-    <ul>
-      <li><ArrowRight class="list-icon" /> Competitor tracking</li>
-      <li><ArrowRight class="list-icon" /> Price monitoring</li>
-      <li><ArrowRight class="list-icon" /> Automated reports</li>
-    </ul>
-  </div>
+  <ProjectTemplate :project="project">
+    <template #image></template>
+    <template #content>
+      <h2>About Traction</h2>
+      <p>
+        Traction is a competitive intelligence tool for e-commerce businesses. It automates the process of tracking 
+        competitor pricing, inventory levels, and product changes.
+      </p>
+      <p>
+        Users can add competitor URLs, and the system periodically crawls these sites to detect changes, 
+        alerting users to price drops or new product launches in their niche.
+      </p>
+      
+      <h2>Technical Highlights</h2>
+      <ul>
+        <li>
+          <ArrowRight class="list-icon" />
+          <span>
+            <strong>Convex:</strong> Real-time backend-as-a-service for instant data sync to the dashboard.
+          </span>
+        </li>
+        <li>
+          <ArrowRight class="list-icon" />
+          <span>
+            <strong>Firecrawl:</strong> Robust web scraping infrastructure to handle dynamic e-commerce sites.
+          </span>
+        </li>
+        <li>
+          <ArrowRight class="list-icon" />
+          <span>
+            <strong>Automated Workflows:</strong> Scheduled jobs for periodic data refresh and change detection.
+          </span>
+        </li>
+      </ul>
+    </template>
+  </ProjectTemplate>
 </template>
 
 <script setup lang="ts">
 import { ArrowRight } from 'lucide-vue-next';
+import ProjectTemplate from '../ProjectTemplate.vue';
+import type { Project } from '../../data/projects';
+
+defineProps<{
+  project: Project;
+}>();
 </script>
 
 <style scoped>
-.content {
-  color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: 40px;
-}
-
-.content h2 {
+h2 {
   color: var(--text-color);
   font-size: 1.5rem;
   margin: 32px 0 16px;
 }
 
-.content p {
+p {
   margin-bottom: 16px;
 }
 
-.content ul {
+ul {
   list-style: none;
   padding: 0;
 }
 
-.content li {
+li {
   display: flex;
   align-items: flex-start;
   margin-bottom: 8px;

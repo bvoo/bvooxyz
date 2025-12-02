@@ -34,7 +34,16 @@ function onMouseLeave() {
 </script>
 
 <template>
-  <div class="project-card" @click="$emit('click')" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
+  <div 
+    class="project-card" 
+    role="button"
+    tabindex="0"
+    @click="$emit('click')" 
+    @keydown.enter="$emit('click')"
+    @keydown.space.prevent="$emit('click')"
+    @mouseenter="onMouseEnter" 
+    @mouseleave="onMouseLeave"
+  >
     <div class="card-content">
       <div class="header">
         <h3 :style="{ viewTransitionName: getTransitionName('title') }">{{ title }}</h3>
@@ -59,7 +68,8 @@ function onMouseLeave() {
   position: relative;
 }
 
-.project-card:hover {
+.project-card:hover,
+.project-card:focus-visible {
   /* border-color: var(--accent-color); */
   border-color: white;
   box-shadow: 0 0 20px rgba(121, 40, 202, 0.1);
@@ -110,7 +120,8 @@ p {
   transition: color 0.3s ease;
 }
 
-.project-card:hover .tag {
+.project-card:hover .tag,
+.project-card:focus-visible .tag {
   color: var(--text-color);
   border-color: #444;
 }
@@ -129,7 +140,8 @@ p {
   transition: opacity 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.project-card:hover .corner-plus {
+.project-card:hover .corner-plus,
+.project-card:focus-visible .corner-plus {
   opacity: 1;
   /* border-color: var(--accent-color); */
   border-color: white;
@@ -145,7 +157,9 @@ p {
 }
 
 .project-card:hover .corner-plus::before,
-.project-card:hover .corner-plus::after {
+.project-card:hover .corner-plus::after,
+.project-card:focus-visible .corner-plus::before,
+.project-card:focus-visible .corner-plus::after {
   /* background-color: var(--accent-color); */
   background-color: white;
 }
