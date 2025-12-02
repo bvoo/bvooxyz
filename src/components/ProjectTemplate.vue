@@ -6,7 +6,7 @@ import Background from './Background.vue';
 import { ArrowLeft, ArrowUpRight } from 'lucide-vue-next';
 import type { Project } from '../data/projects';
 
-const props = defineProps<{
+defineProps<{
   project: Project;
 }>();
 
