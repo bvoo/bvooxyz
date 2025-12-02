@@ -3,9 +3,11 @@ import { useRoute } from 'vue-router';
 import { computed, watch } from 'vue';
 import Home from './views/Home.vue';
 import ProjectDetail from './views/ProjectDetail.vue';
+import NotFound from './views/NotFound.vue';
 
 const route = useRoute();
 const isProjectRoute = computed(() => route.name === 'project');
+const isNotFoundRoute = computed(() => route.name === 'not-found');
 
 watch(isProjectRoute, (isProject) => {
   if (isProject) {
@@ -19,10 +21,11 @@ watch(isProjectRoute, (isProject) => {
 <template>
   <a href="#projects" class="skip-link">Skip to content</a>
   <div class="app-wrapper">
-    <div class="home-layer" :class="{ blurred: isProjectRoute }">
+    <div v-if="!isNotFoundRoute" class="home-layer" :class="{ blurred: isProjectRoute }">
       <Home />
     </div>
     <ProjectDetail v-if="isProjectRoute" />
+    <NotFound v-if="isNotFoundRoute" />
   </div>
 </template>
 

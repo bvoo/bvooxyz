@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import { getProjectBySlug } from '../data/projects';
 
 export default createRouter({
     history: createWebHistory(),
@@ -12,7 +13,19 @@ export default createRouter({
             path: '/projects/:slug',
             name: 'project',
             component: () => import('../views/ProjectDetail.vue'),
-            props: true
+            props: true,
+            beforeEnter: (to) => {
+                const slug = String(to.params.slug ?? '');
+                const project = getProjectBySlug(slug);
+                if (!project) {
+                    return { name: 'not-found' };
+                }
+            }
+        },
+        {
+            path: '/:pathMatch(.*)*',
+            name: 'not-found',
+            component: () => import('../views/NotFound.vue')
         }
     ]
 });
