@@ -6,5 +6,8 @@
         "not_found_handling": "single-page-application",
         "binding": "ASSETS"
     },
+    "placement": {
+        "mode": "smart"
+    },
     "main": "./dist/worker/index.js"
 }
