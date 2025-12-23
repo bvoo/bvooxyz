@@ -19,7 +19,7 @@ export const projects: Project[] = [
         slug: 'rideparsec',
         description: 'An e-commerce website built on a headless Shopify storefront.',
         tags: ['Shopify', 'Vue', 'GraphQL'],
-        link: 'https://rideparsec.com'
+        link: 'https://beta.rideparsec.com'
     },
     {
         title: 'MTG Price Tracker',
